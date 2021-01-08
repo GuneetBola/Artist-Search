@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Button} from 'react-bootstrap';
 
 class Search extends Component {
 
@@ -19,12 +20,13 @@ class Search extends Component {
     render(){
         return(
             <div>
-                <input 
+                <input
                     onChange={this.updateArtistQuery}
                     onKeyPress={this.handleKeyPress}
                     placeholder='Search for an Artist'
                 />
-                <button onClick={this.searchArtist}>Search</button>
+                &nbsp;
+                <Button variant="dark" onClick={this.searchArtist}>Search</Button>
             </div>
         )
     }
