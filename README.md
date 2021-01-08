@@ -1,3 +1,3 @@
-# Artist-Search
+# Artist-Searcher
 
 artistsearcher.netlify.app
