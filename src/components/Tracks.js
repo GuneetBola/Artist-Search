@@ -51,7 +51,7 @@ class Tracks extends Component {
                                 onClick={this.playAudio(preview_url)} className="track">
                                 <img src={album.images[0].url} alt="Image of album" className="track-image"/>
                                 <p className="track-text">{name}</p>
-                                <p className='track-icon'>{this.trackIcon(track)}</p>
+                                <p className="track-icon">{this.trackIcon(track)}</p>
                             </div>   
                         )
                     })

@@ -6,10 +6,10 @@ import Drake from '../assets/drake.png';
 
 const Examples = () => (
     <div className="examples">
-        <Carousel>
+        <div className="row">
+        <Carousel className="mx-auto col-md-10 car">
             <Carousel.Item interval={1000}>
-                <img style={{width: '200px'}}
-                className="d-block w-100"
+                <img
                 src={Bruno}
                 alt="First slide"
                 />
@@ -41,6 +41,8 @@ const Examples = () => (
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
+        </div>
+
     </div>
 )
 
