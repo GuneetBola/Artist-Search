@@ -11,25 +11,38 @@ class App extends Component{
 
     
 
-    searchArtist = artistQuery => {
-        fetch(`${API_ADDRESS}/artist/${artistQuery}`)
+search() {
+        console.log('this.state', this.state);
+        const BASE_URL = 'https://api.spotify.com/v1/search?';
+        let FETCH_URL = BASE_URL + 'q=' + this.state.query + '&type=artist&limit=1';
+        const ALBUM_URL = 'https://api.spotify.com/v1/artists/';
+        let accessToken = 'YOUR ACCESS TOKEN'
+
+        var myOptions = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            mode: 'cors',
+            cache: 'default'
+        };
+
+        fetch(FETCH_URL, myOptions)
             .then(response => response.json())
             .then(json => {
+                const artist = json.artists.items[0];
+                this.setState({ artist });
 
-                if (json.artists.total > 0) {
-                    const artist = json.artists.items[0];
-                    
-                    this.setState({ artist });
-
-                    fetch(`${API_ADDRESS}/artist/${artist.id}/top-tracks`)
-                        .then(response => response.json())
-                        .then(json => this.setState({ tracks: json.tracks }))
-                        .catch(error => alert(error.message))
-                }
-            
+                FETCH_URL = `${ALBUM_URL}${artist.id}/top-tracks?country=US&`
+                fetch(FETCH_URL, myOptions)
+                .then(response => response.json())
+                .then(json => {
+                    const { tracks } = json;
+                    this.setState({ tracks });
+                })
             })
-            .catch(error => alert(error.message));
     }
+
 
     
     render(){
