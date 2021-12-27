@@ -1,7 +1,7 @@
 # Artist-Search
 
 ## Take a Look!
-You can check out my website here: [artistsearcher.netlify.app]
+You can check out my website here: artistsearch.netlify.app
 
 ## Programming Languages Used
 - `React.Js`
