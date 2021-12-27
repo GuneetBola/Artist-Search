@@ -1,4 +1,4 @@
-#🎵🎶Artist Search 
+# 🎵🎶 Artist Search 
 
 Created an interactive website for music lovers to search their favourite artists and listen to thier top tracks!
 
