@@ -2,9 +2,6 @@
 
 Created an interactive website for music lovers to search their favourite artists and listen to thier top tracks!
 
-## Take a Look!
-You can check out my website here: https://artistsearch.netlify.app
-
 ## Tools/Technologies Used
 - `React.Js`
 - `Node.js`
