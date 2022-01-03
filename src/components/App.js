@@ -1,70 +1,41 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import Search from './Search';
 import Artist from './Artist';
 import Tracks from './Tracks';
-import Search from './Search';
-import Examples from './Example';
 
-const API_ADDRESS = 'https://api.spotify.com/v1/artists/';
+const API_ADDRESS = 'https://spotify-api-wrapper.appspot.com';
 
-class App extends Component{ 
-    state={ artist: null, tracks: [] };
+class App extends Component {
+  state = { artist: null, tracks: [] };
 
-    
+  searchArtist = artistQuery => {
+    fetch(`${API_ADDRESS}/artist/${artistQuery}`)
+      .then(response => response.json())
+      .then(json => {
+        if (json.artists.total > 0) {
+          const artist = json.artists.items[0];
 
-search() {
-        console.log('this.state', this.state);
-        const BASE_URL = 'https://api.spotify.com/v1/search?';
-        let FETCH_URL = BASE_URL + 'q=' + this.state.query + '&type=artist&limit=1';
-        const ALBUM_URL = 'https://api.spotify.com/v1/artists/';
-        let accessToken = 'YOUR ACCESS TOKEN'
+          this.setState({ artist });
 
-        var myOptions = {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + accessToken
-            },
-            mode: 'cors',
-            cache: 'default'
-        };
-
-        fetch(FETCH_URL, myOptions)
+          fetch(`${API_ADDRESS}/artist/${artist.id}/top-tracks`)
             .then(response => response.json())
-            .then(json => {
-                const artist = json.artists.items[0];
-                this.setState({ artist });
+            .then(json => this.setState({ tracks: json.tracks }))
+            .catch(error => alert(error.message));
+        }
+      })
+      .catch(error => alert(error.message));
+  }
 
-                FETCH_URL = `${ALBUM_URL}${artist.id}/top-tracks?country=US&`
-                fetch(FETCH_URL, myOptions)
-                .then(response => response.json())
-                .then(json => {
-                    const { tracks } = json;
-                    this.setState({ tracks });
-                })
-            })
-    }
-
-
-    
-    render(){
-        return (
-            <div className="start">
-                <div className="bg"></div>
-                <div className="bg bg2"></div>
-                <div className="bg bg3"></div>  
-                <div className="top pb-3">
-                    <h2 className="main-title">Artist Search</h2>
-                    <h4>Search your favourite artist to get their top songs!</h4>
-                </div>
-                
-                <Search searchArtist={this.searchArtist} />
-                <Artist artist={this.state.artist} />
-                <Tracks tracks={this.state.tracks}/>
-                {/* <h5>Examples can be seen below:</h5> 
-                <Examples/> */}
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <h2>Music Master</h2>
+        <Search searchArtist={this.searchArtist} />
+        <Artist artist={this.state.artist} />
+        <Tracks tracks={this.state.tracks} />
+      </div>
+    );
+  }
 }
 
 export default App;
-
