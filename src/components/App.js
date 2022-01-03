@@ -28,12 +28,21 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Music Master</h2>
-        <Search searchArtist={this.searchArtist} />
-        <Artist artist={this.state.artist} />
-        <Tracks tracks={this.state.tracks} />
-      </div>
+      <div className="start">
+                <div className="bg"></div>
+                <div className="bg bg2"></div>
+                <div className="bg bg3"></div>  
+                <div className="top pb-3">
+                    <h2 className="main-title">Artist Search</h2>
+                    <h4>Search your favourite artist to get their top songs!</h4>
+                </div>
+
+                <Search searchArtist={this.searchArtist} />
+                <Artist artist={this.state.artist} />
+                <Tracks tracks={this.state.tracks}/>
+                {/* <h5>Examples can be seen below:</h5> 
+                <Examples/> */}
+     </div>
     );
   }
 }
