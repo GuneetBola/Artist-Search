@@ -9,6 +9,3 @@ Created an interactive website for music lovers to search their favourite artist
 - `CSS`
 - `JavaScript`
 - `REST API`
-
-
-Completed this through the React-Bootcamp Course on Udemy by David Katz!
